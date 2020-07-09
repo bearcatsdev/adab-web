@@ -1,7 +1,7 @@
 <template>
-    <div class="text-box-container">
+    <div class="text-box-container" :class="{ active: isActive }">
         <i v-if="icon" class="text-box-logo" :data-feather="icon"></i>
-        <input :name="name" :placeholder="placeholder" :type="type" class="match-parent text-box">
+        <input @focus="isActive = true" @blur="isActive = false" :name="name" :placeholder="placeholder" :type="type" class="text-box">
     </div>
 </template>
 
@@ -10,9 +10,14 @@
     export default {
         name: "TextField",
         props: ['type', 'name', 'icon', 'placeholder'],
+        data() {
+            return {
+                isActive: false
+            }
+        },
         mounted() {
             feather.replace()
-        }
+        },
     }
 </script>
 
@@ -21,12 +26,16 @@
         margin-left: 8px;
     }
 
+    .active {
+        @apply border-black !important;
+    }
+
     .text-box-container {
-        @apply bg-white w-full flex flex-row justify-start items-center;
+        @apply bg-white w-full flex flex-row justify-start items-center rounded-md;
         border: 2px solid #F8F9FA;
     }
 
     .text-box {
-        @apply bg-white w-full p-3 border-none;
+        @apply bg-white w-full p-3 border-none outline-none;
     }
 </style>

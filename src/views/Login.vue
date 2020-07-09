@@ -6,7 +6,7 @@
                 <div class="subtitle">Sign in</div>
                 <text-field icon="user" name="email" placeholder="Email" type="email"/>
                 <text-field icon="lock" name="password" placeholder="Password" type="password"/>
-                <Button class="login-button">Login</Button>
+                <Button class="login-button" :on-click="hello">Login</Button>
             </div>
         </card>
     </div>
@@ -18,7 +18,12 @@
     import Button from "../components/Button";
     export default {
         name: "Login",
-        components: {Button, TextField, Card}
+        components: {Button, TextField, Card},
+        methods: {
+            hello() {
+                alert("hello")
+            }
+        }
     }
 </script>
 
