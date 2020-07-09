@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+#app {
+    background: #F8F9FA;
+}
+
 body {
     @apply text-body font-body;
 }
