@@ -1,11 +1,21 @@
 <template>
     <div class="nav">
-        <ul class="nav-items">
-            <li><nav-link icon="home" to="/app/dashboard">Dashboard</nav-link></li>
-            <li><nav-link icon="inbox" to="/app/inbox">Inbox</nav-link></li>
-            <li><nav-link icon="book" to="/app/class">Class</nav-link></li>
-            <li><nav-link icon="message-square" to="/app/discussion">Discussion</nav-link></li>
-            <li><nav-link icon="calendar" to="/app/schedule">Schedule</nav-link></li>
+        <div class="profile-section">
+            <img class="profile-picture" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Profile picture">
+            <div class="user-name">Chandra Liow</div>
+            <div class="user-email">chandra@binusian.id</div>
+        </div>
+
+        <hr>
+
+        <ul class="nav-items-container">
+            <div class="nav-items">
+                <li><nav-link icon="home" to="/app/dashboard">Dashboard</nav-link></li>
+                <li><nav-link icon="inbox" to="/app/inbox">Inbox</nav-link></li>
+                <li><nav-link icon="book" to="/app/class">Class</nav-link></li>
+                <li><nav-link icon="message-square" to="/app/discussion">Discussion</nav-link></li>
+                <li><nav-link icon="calendar" to="/app/schedule">Schedule</nav-link></li>
+            </div>
         </ul>
     </div>
 </template>
@@ -23,8 +33,28 @@
         @apply float-none fixed bottom-0 w-screen bg-white h-16;
     }
 
+    .nav-items-container {
+        @apply flex h-full;
+    }
+
     .nav-items {
-        @apply flex justify-around items-center h-full;
+        @apply flex justify-around items-center w-screen;
+    }
+
+    .profile-section {
+        @apply hidden;
+    }
+
+    .profile-picture {
+        @apply rounded-full object-cover h-24 w-24;
+    }
+
+    .user-name {
+        @apply mt-2;
+    }
+
+    .user-email {
+        @apply text-sm text-secondary;
     }
 
     @screen lg {
@@ -32,8 +62,16 @@
             @apply w-56 h-screen;
         }
 
+        .nav-items-container {
+            @apply h-auto justify-center my-4;
+        }
+
         .nav-items {
-            @apply flex-col h-auto items-start;
+            @apply flex-col items-start w-auto;
+        }
+
+        .profile-section {
+            @apply flex flex-col mt-8 mb-4 items-center;
         }
     }
 
