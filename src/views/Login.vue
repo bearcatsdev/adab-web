@@ -6,7 +6,7 @@
                 <div class="subtitle">Sign in</div>
                 <text-field icon="user" name="email" placeholder="Email" type="email"/>
                 <text-field icon="lock" name="password" placeholder="Password" type="password"/>
-                <Button class="login-button" :on-click="hello">Login</Button>
+                <Button class="login-button" @click="hello">Login</Button>
             </div>
         </card>
     </div>
