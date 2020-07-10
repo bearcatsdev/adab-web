@@ -22,6 +22,10 @@
         @apply no-underline text-body flex flex-col items-center;
     }
 
+    .router-link:hover {
+        @apply text-primaryDark;
+    }
+
     .active {
         @apply text-primary;
     }
