@@ -1,27 +1,52 @@
 <template>
     <div class="flex justify-center items-center h-screen">
-        <card class="login-card">
-            <img class="branding" alt="Adab" src="../assets/icons/adab.svg"/>
-            <div class="w-full">
-                <div class="subtitle">Sign in</div>
-                <text-field icon="user" name="email" placeholder="Email" type="email"/>
-                <text-field icon="lock" name="password" placeholder="Password" type="password"/>
-                <Button class="login-button" @click="hello">Login</Button>
-            </div>
-        </card>
+        <form @submit.prevent="doLogin">
+            <card class="login-card">
+                <img class="branding" alt="Adab" src="../assets/icons/adab.svg"/>
+                <div class="w-full">
+                    <div class="subtitle">Sign in</div>
+                    <text-field icon="user" name="email" placeholder="Email" type="email" v-model="form.username" required/>
+                    <text-field icon="lock" name="password" placeholder="Password" type="password" v-model="form.password" required/>
+                    <Button class="login-button" type="submit">Login</Button>
+                </div>
+                <div class="error-message">{{ form.errorMessage }}</div>
+            </card>
+        </form>
     </div>
 </template>
 
 <script>
-    import Card from "../components/Card";
-    import TextField from "../components/TextField";
-    import Button from "../components/Button";
+    import Card from "../components/Card"
+    import TextField from "../components/TextField"
+    import Button from "../components/Button"
+    import { mapState } from 'vuex'
+
     export default {
         name: "Login",
         components: {Button, TextField, Card},
+        data() {
+            return {
+                form: {
+                    username: '',
+                    password: '',
+                    errorMessage: ''
+                }
+            }
+        },
+        computed: {
+            ...mapState('UserCredentials', ['currentUser'])
+        },
         methods: {
-            hello() {
-                alert("hello")
+            doLogin() {
+                this.$store.dispatch('UserCredentials/GET_CURRENT_USER', {
+                    username: this.form.username,
+                    password: this.form.password
+                }).then(() => {
+                    this.$router.push('/app')
+                }).catch(error => {
+                    if (error.response.data.message) this.form.errorMessage = error.response.data.message
+                })
+
             }
         }
     }
@@ -43,5 +68,9 @@
 
     .subtitle {
         @apply uppercase font-bold text-sm mb-4;
+    }
+
+    .error-message {
+        @apply text-sm text-danger mt-2;
     }
 </style>
