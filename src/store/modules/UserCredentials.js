@@ -5,34 +5,45 @@ export default {
     namespaced: true,
 
     state: {
-        currentUser: {}
+        sessionId: '',
+        currentUser: {},
     },
 
     mutations: {
-        SET_CURRENT_USER (state, payload) {
+        SET_SESSION_ID(state, payload) {
+            state.sessionId = payload
+        },
+        SET_CURRENT_USER(state, payload) {
             state.currentUser = payload
         }
     },
 
     actions: {
-        GET_CURRENT_USER ({commit}, payload) {
+        AUTHENTICATE_USER({commit, state}, payload) {
             return new Promise((resolve, reject) => {
                 UserCredentialsApi.authenticate(payload.username, payload.password)
                     .then(response => {
-                        if (response.status === 200) {
-                            commit('SET_CURRENT_USER', response.data.values)
+                        commit('SET_SESSION_ID', response.data.values['session_id'])
 
-                            // set cookie
-                            cookie.set('session_id', response.data.values['session_id'], '7d')
+                        // set cookie
+                        cookie.set('session_id', state.sessionId, '7d')
 
-                            resolve()
-                        } else {
-                            console.log(response)
-                            reject(response.status)
-                        }
+                        resolve()
                     })
                     .catch(error => {
-                        commit('SET_CURRENT_USER', error)
+                        console.log(error)
+                        reject(error)
+                    })
+            })
+        },
+        GET_CURRENT_USER({commit}) {
+            return new Promise((resolve, reject) => {
+                UserCredentialsApi.getUserProfile()
+                    .then(response => {
+                        commit('SET_CURRENT_USER', response.data.values)
+                        resolve()
+                    })
+                    .catch(error => {
                         console.log(error)
                         reject(error)
                     })

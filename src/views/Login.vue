@@ -19,7 +19,6 @@
     import Card from "../components/Card"
     import TextField from "../components/TextField"
     import Button from "../components/Button"
-    import { mapState } from 'vuex'
 
     export default {
         name: "Login",
@@ -33,12 +32,9 @@
                 }
             }
         },
-        computed: {
-            ...mapState('UserCredentials', ['currentUser'])
-        },
         methods: {
             doLogin() {
-                this.$store.dispatch('UserCredentials/GET_CURRENT_USER', {
+                this.$store.dispatch('UserCredentials/AUTHENTICATE_USER', {
                     username: this.form.username,
                     password: this.form.password
                 }).then(() => {

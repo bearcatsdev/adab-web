@@ -1,15 +1,19 @@
 <template>
     <div>
-        <the-nav/>
+        <the-nav :currentUser="currentUser"/>
         <router-view class="content"/>
     </div>
 </template>
 
 <script>
     import TheNav from "../../components/App/TheNav";
+    import {mapState} from "vuex";
     export default {
         name: "Home",
-        components: {TheNav}
+        components: {TheNav},
+        computed: {
+            ...mapState('UserCredentials', ['currentUser'])
+        },
     }
 </script>
 

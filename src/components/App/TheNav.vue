@@ -1,9 +1,9 @@
 <template>
     <div class="nav">
         <div class="profile-section">
-            <img class="profile-picture" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Profile picture">
-            <div class="user-name">Chandra Liow</div>
-            <div class="user-email">chandra@binusian.id</div>
+            <img class="profile-picture" src="/api/v1/user/picture" alt="Profile picture">
+            <div class="user-name">{{ currentUser['user_name'] }}</div>
+            <div class="user-email">{{ currentUser['user_email'] }}</div>
         </div>
 
         <hr>
@@ -24,7 +24,8 @@
     import NavLink from "./NavLink";
     export default {
         name: "TheNav",
-        components: {NavLink}
+        components: {NavLink},
+        props: ['currentUser']
     }
 </script>
 

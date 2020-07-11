@@ -3,7 +3,7 @@
         <announcement-bar v-if="showAnnouncement" @close="showAnnouncement = false"/>
 
         <div class="division">
-<!--            Left column-->
+            <!--            Left column-->
             <div class="column">
                 <Section class="section" title="Sessions" icon="book">
                     <a href="#" class="text-body">
@@ -11,14 +11,18 @@
                             <div class="course-name">COMP6047 - Algorithm & Programming</div>
                             <div class="topic">Installation & Setup</div>
                             <div class="topic-body">
-                                Lorem ipsum dolor sit amet, ex nostrud cotidieque usu, ut has persius iuvaret referrentur. Maiorum molestiae gloriatur an nam, id doctus convenire sea. Modo feugait sensibus sea no, et nobis referrentur comprehensam vis. Te erat mazim honestatis usu, has facilisis salutatus ad, cu definiebas appellantur mea. Possim suscipit lucilius usu ea, ne pro mazim constituto. Audire comprehensam sea in, ei dolore disputando sit.
+                                Lorem ipsum dolor sit amet, ex nostrud cotidieque usu, ut has persius iuvaret
+                                referrentur. Maiorum molestiae gloriatur an nam, id doctus convenire sea. Modo feugait
+                                sensibus sea no, et nobis referrentur comprehensam vis. Te erat mazim honestatis usu,
+                                has facilisis salutatus ad, cu definiebas appellantur mea. Possim suscipit lucilius usu
+                                ea, ne pro mazim constituto. Audire comprehensam sea in, ei dolore disputando sit.
                             </div>
                         </card>
                     </a>
                 </Section>
             </div>
 
-<!--            Right column-->
+            <!--            Right column-->
             <div class="column">
                 <Section class="section" title="Schedule" icon="calendar">
                     <card>
@@ -34,15 +38,28 @@
     import AnnouncementBar from "../../components/App/AnnouncementBar";
     import Section from "../../components/App/Section";
     import Card from "../../components/Card";
+    import {mapState} from "vuex";
+
     export default {
         name: "Dashboard",
         components: {Card, Section, AnnouncementBar},
-        data () {
+        data() {
             return {
                 showAnnouncement: true
             }
         },
-        methods: {
+        methods: {},
+        computed: {
+            ...mapState('UserCredentials', ['currentUser'])
+        },
+        mounted() {
+            this.$store.dispatch('UserCredentials/GET_CURRENT_USER')
+                .catch(error => {
+                    if (error.response.status === 401) {
+                        // unauthorized
+                        this.$router.push('/login')
+                    }
+                })
         }
     }
 </script>
