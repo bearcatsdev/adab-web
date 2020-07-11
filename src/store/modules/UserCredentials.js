@@ -1,4 +1,5 @@
-import UserCredentialsApi from "../../services/api/UserCredentials";
+import UserCredentialsApi from "../../services/api/UserCredentials"
+import cookie from 'vue-cookies'
 
 export default {
     namespaced: true,
@@ -20,6 +21,10 @@ export default {
                     .then(response => {
                         if (response.status === 200) {
                             commit('SET_CURRENT_USER', response.data.values)
+
+                            // set cookie
+                            cookie.set('session_id', response.data.values['session_id'], '7d')
+
                             resolve()
                         } else {
                             console.log(response)
