@@ -1,10 +1,11 @@
 <template>
-    <button @click="handleClick" class="button"><slot/></button>
+    <button @click="handleClick" class="button" :type="type"><slot/></button>
 </template>
 
 <script>
     export default {
         name: "Button",
+        props: ['type'],
         methods: {
             handleClick() {
                 this.$emit('click')

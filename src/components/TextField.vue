@@ -1,7 +1,16 @@
 <template>
     <div class="text-box-container" :class="{ active: isActive }">
         <i v-if="icon" class="text-box-logo" :data-feather="icon"></i>
-        <input @focus="isActive = true" @blur="isActive = false" :name="name" :placeholder="placeholder" :type="type" class="text-box">
+        <input @focus="isActive = true"
+               @blur="isActive = false"
+               @input="$emit('input', $event.target.value)"
+               class="text-box"
+               :name="name"
+               :placeholder="placeholder"
+               :type="type"
+               :value="value"
+               :required="required"
+        >
     </div>
 </template>
 
@@ -9,7 +18,7 @@
     import feather from "feather-icons"
     export default {
         name: "TextField",
-        props: ['type', 'name', 'icon', 'placeholder'],
+        props: ['type', 'name', 'icon', 'placeholder', 'value', 'required'],
         data() {
             return {
                 isActive: false
