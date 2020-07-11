@@ -8,5 +8,11 @@ export default {
         }).then(response => {
             return response
         })
+    },
+
+    getUserProfile() {
+        return axios.get('/api/v1/user/profile').then(response => {
+            return response
+        })
     }
 }
