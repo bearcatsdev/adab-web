@@ -25,7 +25,7 @@ Vue.use(VueRouter)
     name: 'Adab',
     component: () => import('../views/App/Root.vue'),
     children: [
-      { path: '/', name: 'Dashboard', component: () => import('../views/App/Dashboard.vue') },
+      { path: '/', redirect: '/app/dashboard', name: 'App', component: () => import('../views/App/Dashboard.vue') },
       { path: 'dashboard', name: 'Dashboard', component: () => import('../views/App/Dashboard.vue') },
     ]
   }
