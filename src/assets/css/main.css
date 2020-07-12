@@ -1,6 +1,4 @@
 @import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 body {
     background: #F8F9FA;
@@ -34,3 +32,6 @@ h5 {
 a {
     @apply text-blue-600 underline;
 }
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
