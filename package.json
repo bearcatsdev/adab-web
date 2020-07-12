@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "feather-icons": "^4.28.0",
+    "moment": "^2.27.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.2",

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import UserCredentials from "./modules/UserCredentials";
+import UserCredentials from "./modules/User";
 
 Vue.use(Vuex)
 

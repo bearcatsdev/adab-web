@@ -6,19 +6,19 @@
             <!--            Left column-->
             <div class="column">
                 <Section class="section" title="Sessions" icon="book">
-                    <a href="#" class="text-body">
+                    <router-link :to="`session/${session['session_id']}`" class="text-body" v-for="session in userSessions" :key="session['session_id']">
                         <card class="section-card">
-                            <div class="course-name">COMP6047 - Algorithm & Programming</div>
-                            <div class="topic">Installation & Setup</div>
+                            <div class="course-name">{{ session['course_id'] }} - {{ session['course_name'] }}</div>
+                            <div class="topic">{{ session['topic_title'] }}</div>
                             <div class="topic-body">
-                                Lorem ipsum dolor sit amet, ex nostrud cotidieque usu, ut has persius iuvaret
-                                referrentur. Maiorum molestiae gloriatur an nam, id doctus convenire sea. Modo feugait
-                                sensibus sea no, et nobis referrentur comprehensam vis. Te erat mazim honestatis usu,
-                                has facilisis salutatus ad, cu definiebas appellantur mea. Possim suscipit lucilius usu
-                                ea, ne pro mazim constituto. Audire comprehensam sea in, ei dolore disputando sit.
+                                {{ session['topic_description'] }}
+                            </div>
+                            <div class="information">
+                                <div><i class="icon" data-feather="clock"/> {{ session['session_startdate'] | moment}}</div>
+                                <div><i class="icon" data-feather="map-pin"/> {{ session['session_room'] }}, {{ session['session_campus'] }}</div>
                             </div>
                         </card>
-                    </a>
+                    </router-link>
                 </Section>
             </div>
 
@@ -39,6 +39,8 @@
     import Section from "../../components/App/Section";
     import Card from "../../components/Card";
     import {mapState} from "vuex";
+    import feather from "feather-icons";
+    import moment from "moment";
 
     export default {
         name: "Dashboard",
@@ -50,9 +52,15 @@
         },
         methods: {},
         computed: {
-            ...mapState('UserCredentials', ['currentUser'])
+            ...mapState('UserCredentials', ['currentUser', 'userSessions'])
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('dddd, MMMM Do YYYY, HH:mm')
+            }
         },
         mounted() {
+            // get user profile
             this.$store.dispatch('UserCredentials/GET_CURRENT_USER')
                 .catch(error => {
                     if (error.response.status === 401) {
@@ -60,6 +68,19 @@
                         this.$router.push('/login')
                     }
                 })
+
+            // get user sessions
+            this.$store.dispatch('UserCredentials/GET_SESSIONS')
+                .catch(error => {
+                    if (error.response.status === 401) {
+                        // unauthorized
+                        this.$router.push('/login')
+                    }
+                }).then(() => {
+
+                // feather
+                feather.replace()
+            })
         }
     }
 </script>
@@ -86,11 +107,23 @@
     }
 
     .section-card > .course-name {
-        @apply mb-1;
+        @apply mb-2;
     }
 
     .section-card > .topic {
         @apply font-bold mb-1;
+    }
+
+    .section-card > .information {
+        @apply mt-3 flex justify-between;
+    }
+
+    .section-card > .information > div {
+        @apply flex items-center w-full;
+    }
+
+    .section-card > .information .icon {
+        @apply w-4 mr-1;
     }
 
     @screen lg {
