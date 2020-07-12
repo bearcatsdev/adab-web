@@ -20,6 +20,7 @@ Vue.use(VueRouter)
     children: [
       { path: '/', redirect: '/app/dashboard', name: 'App', component: () => import('../views/App/Dashboard.vue') },
       { path: 'dashboard', name: 'Dashboard', component: () => import('../views/App/Dashboard.vue') },
+      { path: 'session/:id', name: 'Session', component: () => import('../views/App/Session.vue') },
     ]
   }
 ]
