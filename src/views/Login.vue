@@ -8,8 +8,8 @@
                     <text-field icon="user" name="email" placeholder="Email" type="email" v-model="form.username" required/>
                     <text-field icon="lock" name="password" placeholder="Password" type="password" v-model="form.password" required/>
                     <Button class="login-button" type="submit">Login</Button>
+                    <div class="error-message"> {{ form.errorMessage }}</div>
                 </div>
-                <div class="error-message">{{ form.errorMessage }}</div>
             </card>
         </form>
     </div>
@@ -50,8 +50,19 @@
 
 <style scoped>
     .login-card {
-        @apply p-6 flex flex-col items-center;
+        @apply p-12 flex flex-col items-center;
         width: 24rem;
+
+    }
+
+    @screen lg {
+        .login-card {
+            @apply flex-row;
+            width: 42rem;
+        }
+        .branding {
+            @apply ml-8 mr-16;
+        }
     }
 
     .login-button {
@@ -63,7 +74,7 @@
     }
 
     .subtitle {
-        @apply uppercase font-bold text-sm mb-4;
+        @apply uppercase font-bold text-sm mb-4 text-secondary;
     }
 
     .error-message {
