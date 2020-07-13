@@ -16,10 +16,15 @@
 
 <style scoped>
     .button {
-        @apply bg-primary text-white py-2 px-5 rounded-md shadow-md uppercase font-medium text-sm;
+        @apply bg-primary text-white py-4 px-5 rounded-md shadow-md uppercase font-medium text-sm;
     }
 
     .button:hover {
-        @apply bg-primaryDark;
+        @apply bg-primaryDark shadow-lg;
+    }
+
+    .button:focus{
+        @apply bg-primaryDarker shadow-none;
+        outline: none;
     }
 </style>
