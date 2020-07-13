@@ -12,6 +12,7 @@
 <script>
     import Section from "../../components/App/Section";
     import SessionApi from "../../services/api/Session";
+
     export default {
         name: "Session",
         components: {Section},
@@ -26,10 +27,32 @@
             SessionApi.getSessionDetails(this.sessionId).then((response) => {
                 this.sessionDetails = response.data.values
                 this.content = this.sessionDetails['content']
+
+                // setup speech recognition
+                setupSpeechRecognition(this.sessionDetails['course_lang'])
             }).catch((error) => {
                 // do something when error
                 console.log(error)
             })
+
+            const setupSpeechRecognition = (lang) => {
+                // speech recognition
+                const recognition = new (window.speechRecognition || window.webkitSpeechRecognition)()
+                recognition.interimResults = false;
+                recognition.lang = lang
+                recognition.start()
+
+                recognition.onresult = (event) => {
+                    const recognized = event.results[0][0].transcript
+                    // console.log(recognized)
+                    this.content += ` ${recognized}`
+                }
+
+                recognition.onend = () => {
+                    recognition.stop();
+                    recognition.start();
+                };
+            }
         }
     }
 </script>
