@@ -2,7 +2,7 @@
 
 body {
     background: #F8F9FA;
-    @apply text-body font-body;
+    @apply text-body font-body text-sm;
 }
 
 h1, h2, h3, h4, h5, h6 {
