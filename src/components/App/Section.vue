@@ -1,7 +1,7 @@
 <template>
     <div class="section">
         <div class="header">
-            <div class="mr-4" v-if="icon">
+            <div class="ml-2 mr-4" v-if="icon">
                 <i :data-feather="icon"/>
             </div>
             <div class="flex flex-col">
@@ -34,7 +34,7 @@
     }
 
     .header {
-        @apply flex items-center py-2;
+        @apply flex items-center py-2 font-medium;
     }
 
     .divider {

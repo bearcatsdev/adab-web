@@ -68,7 +68,7 @@
         }
 
         .nav-items {
-            @apply flex-col items-start w-auto;
+            @apply flex-col items-start w-full;
         }
 
         .profile-section {
@@ -80,5 +80,9 @@
         .nav {
             @apply w-72;
         }
+    }
+
+    li {
+        @apply w-full;
     }
 </style>
