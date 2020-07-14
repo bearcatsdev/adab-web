@@ -39,7 +39,6 @@
     import Section from "../../components/App/Section";
     import Card from "../../components/Card";
     import {mapState} from "vuex";
-    import feather from "feather-icons";
     import moment from "moment";
 
     export default {
@@ -59,29 +58,6 @@
                 return moment(date).format('dddd, MMMM Do YYYY, HH:mm')
             }
         },
-        mounted() {
-            // get user profile
-            this.$store.dispatch('UserCredentials/GET_CURRENT_USER')
-                .catch(error => {
-                    if (error.response.status === 401) {
-                        // unauthorized
-                        this.$router.push('/login')
-                    }
-                })
-
-            // get user sessions
-            this.$store.dispatch('UserCredentials/GET_SESSIONS')
-                .catch(error => {
-                    if (error.response.status === 401) {
-                        // unauthorized
-                        this.$router.push('/login')
-                    }
-                }).then(() => {
-
-                // feather
-                feather.replace()
-            })
-        }
     }
 </script>
 
