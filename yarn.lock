@@ -1657,7 +1657,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.0.tgz#a17b3a8ea811060e74d47d306122400ad4497ae2"
   integrity sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
 
-axios@^0.19.2:
+axios@^0.19.0, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -5241,6 +5241,19 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-vuejs@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/lottie-vuejs/-/lottie-vuejs-0.3.7.tgz#01b23372f923cc7ea4ff1c09e29caca2d1bcfa13"
+  integrity sha512-bvFJu+nF7dbG3iqvotRLlKsiEv+12SzyERd1fqbMkMRodZ+9pesX982HQDwuARXMwGdcb5Xq6VD4GqUouyTq/g==
+  dependencies:
+    axios "^0.19.0"
+    lottie-web "^5.1.9"
+
+lottie-web@^5.1.9:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.7.0.tgz#628421df7a43c20a5171ac65bdc7bb4c499f8f37"
+  integrity sha512-mCj9KaVR1FdcaRuKB0oqKqC2R+awlqGgx38Sy4q3H0+aNPJ9Ut5LIvBNGyMHiZRpJlPcRQ1Mk//fp2bY3QYq1A==
+
 lower-case@^1.1.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
@@ -8596,6 +8609,13 @@ vue-loader@^15.9.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-lottie@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-lottie/-/vue-lottie-0.2.1.tgz#f9f62c34a276e6834255406118fb05b51f765e4b"
+  integrity sha512-zInUX69Ij8MhVR3XArpu4PqqBoufwKxS5UMutWCPm59VUaB5H6GtnaIzf9M+l6aYU+Kr8gF/W9dzWLgRuU6V+Q==
+  dependencies:
+    lottie-web "^5.1.9"
 
 vue-router@^3.2.0:
   version "3.3.4"
