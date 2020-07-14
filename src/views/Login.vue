@@ -2,7 +2,9 @@
     <div class="flex justify-center items-center h-screen">
         <form @submit.prevent="doLogin">
             <card class="login-card">
-                <img class="branding" alt="Adab" src="../assets/icons/adab.svg"/>
+                <div class="branding">
+                    <lottie :options="logo"/>
+                </div>
                 <div class="w-full">
                     <div class="subtitle">Sign in</div>
                     <text-field icon="user" name="email" placeholder="Email" type="email" v-model="form.username" required/>
@@ -19,17 +21,20 @@
     import Card from "../components/Card"
     import TextField from "../components/TextField"
     import Button from "../components/Button"
+    import Lottie from 'vue-lottie'
+    import logo from '../assets/lottie/logo.json'
 
     export default {
         name: "Login",
-        components: {Button, TextField, Card},
+        components: {Button, TextField, Card, Lottie},
         data() {
             return {
                 form: {
                     username: '',
                     password: '',
                     errorMessage: ''
-                }
+                },
+                logo: {animationData: logo, loop: false}
             }
         },
         methods: {
@@ -61,7 +66,7 @@
             width: 42rem;
         }
         .branding {
-            @apply ml-8 mr-16;
+            @apply pr-8 pb-0 !important;
         }
     }
 
@@ -70,7 +75,7 @@
     }
 
     .branding {
-        @apply w-32 py-6;
+        @apply	w-4/5 pb-8;
     }
 
     .subtitle {
