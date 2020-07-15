@@ -12,8 +12,6 @@
     "autoprefixer": "^9.8.5",
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
     "feather-icons": "^4.28.0",
     "lottie-vuejs": "^0.3.7",
     "moment": "^2.27.0",
@@ -44,7 +42,6 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "plugin:prettier/recommended",
       "eslint:recommended"
     ],
     "parserOptions": {
