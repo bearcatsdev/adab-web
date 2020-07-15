@@ -22,6 +22,11 @@ Vue.use(VueRouter)
       { path: 'dashboard', name: 'Dashboard', component: () => import('../views/App/Dashboard.vue') },
       { path: 'session/:id', name: 'Session', component: () => import('../views/App/Session.vue') },
     ]
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 
