@@ -1,6 +1,6 @@
 <template>
     <router-link :to="to" class="router-link" active-class="active">
-        <i v-if="icon" class="text-box-logo" :data-feather="icon"/>
+        <i v-if="icon" class="router-icon" :data-feather="icon"/>
         <div class="lg:ml-6"><slot/></div>
     </router-link>
 </template>
@@ -19,7 +19,7 @@
 
 <style scoped>
     .router-link {
-        @apply no-underline text-body flex flex-col items-center;
+        @apply no-underline text-body flex flex-col items-center w-full font-medium;
     }
 
     .router-link:hover {
@@ -33,7 +33,16 @@
     /*Selector for large screen*/
     @screen lg {
         .router-link {
-            @apply flex-row h-12;
+            height: 56px;
+            @apply flex-row rounded-lg ;
+        }
+
+        .router-link:hover {
+            @apply shadow-lg bg-background;
+        }
+
+        .router-icon {
+            @apply ml-6;
         }
     }
 </style>
