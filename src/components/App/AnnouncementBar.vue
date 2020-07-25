@@ -26,7 +26,13 @@
 
 <style scoped>
     .announcement-bar {
-        @apply w-full bg-primary text-white flex justify-between py-3 px-4;
+        @apply w-full;
+        @apply bg-dark;
+        @apply text-white;
+        @apply flex;
+        @apply justify-between;
+        @apply py-3;
+        @apply px-4;
     }
 
     .content {

@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 
 body {
-    background: #F8F9FA;
+    background: #F4F5FC;
     @apply text-body font-body text-sm;
 }
 
