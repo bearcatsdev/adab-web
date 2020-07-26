@@ -11,7 +11,15 @@
 
 <style scoped>
     .button {
-        @apply bg-primary text-white py-2 px-5 rounded-md shadow-md uppercase font-medium text-sm;
+        @apply bg-primary;
+        @apply text-white;
+        @apply py-2;
+        @apply px-5;
+        @apply rounded-md;
+        @apply shadow-md;
+        @apply uppercase;
+        @apply font-medium;
+        @apply text-sm;
     }
     .button:hover {
         @apply bg-primaryDark;

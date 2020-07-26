@@ -43,13 +43,11 @@
 </script>
 
 <style scoped>
-    @screen lg {
-        .content {
-            @apply ml-56;
-        }
+    .content {
+        @apply mb-20;
     }
 
-    @screen xl {
+    @screen lg {
         .content {
             @apply ml-72;
         }

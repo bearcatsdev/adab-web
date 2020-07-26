@@ -10,6 +10,7 @@ module.exports = {
         success: '#A1C920',
         danger: '#FC5842',
         dark: '#343A40',
+        light: '#D2DEEB',
         secondary: '#6C757D',
         black: '#000',
         white: '#fff',
@@ -34,10 +35,12 @@ module.exports = {
         '96': '24rem',
       },
       boxShadow: {
-        'primary': '0 10px 15px -3px rgba(48, 168, 230, .3)'
+        'primary': '0px 2px 8px rgba(66, 141, 252, 0.25);'
       },
       screens: {
-        'dark-mode': { raw: '(prefers-color-scheme: dark)' }
+        'dark-mode': {
+          raw: '(prefers-color-scheme: dark)'
+        }
       }
     },
   },

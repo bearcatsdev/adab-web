@@ -12,7 +12,11 @@
 
 <style scoped>
     .card {
-        @apply py-2 px-4 shadow-md inline-block bg-white;
+        @apply py-2;
+        @apply px-4;
+        @apply shadow-md;
+        @apply inline-block;
+        @apply bg-white;
         border-radius: 8px;
     }
 </style>

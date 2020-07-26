@@ -52,7 +52,13 @@
     }
 
     .text-box-container {
-        @apply bg-white  w-full block relative items-center rounded-lg mb-4;
+        @apply bg-white;
+        @apply w-full;
+        @apply block;
+        @apply relative;
+        @apply items-center;
+        @apply rounded-lg;
+        @apply mb-4;
         border: 2px solid #F8F9FA;
         height: 48px;
     }
@@ -60,6 +66,14 @@
     .text-box-input {
         padding-left: 45px;
         height: 44px;
-        @apply bg-white text-sm text-black absolute inline-block w-full rounded-lg border-none outline-none;
+        @apply bg-white;
+        @apply text-sm;
+        @apply text-black;
+        @apply absolute;
+        @apply inline-block;
+        @apply w-full;
+        @apply rounded-lg;
+        @apply border-none;
+        @apply outline-none;
     }
 </style>

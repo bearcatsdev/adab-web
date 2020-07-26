@@ -24,22 +24,31 @@
     import NavLink from "./NavLink";
     export default {
         name: "TheNav",
-        components: {NavLink},
+        components: { NavLink },
         props: ['currentUser']
     }
 </script>
 
 <style scoped>
     .nav {
-        @apply float-none fixed bottom-0 w-screen bg-white h-16;
+        @apply float-none;
+        @apply fixed;
+        @apply bottom-0;
+        @apply w-screen;
+        @apply bg-white;
+        @apply h-16;
     }
 
     .nav-items-container {
-        @apply flex h-full;
+        @apply flex;
+        @apply h-full;
     }
 
     .nav-items {
-        @apply flex justify-around items-center w-screen;
+        @apply flex;
+        @apply justify-around;
+        @apply items-center;
+        @apply w-screen;
     }
 
     .profile-section {
@@ -47,7 +56,10 @@
     }
 
     .profile-picture {
-        @apply rounded-full object-cover h-24 w-24;
+        @apply rounded-full;
+        @apply object-cover;
+        @apply h-24;
+        @apply w-24;
     }
 
     .user-name {
@@ -55,16 +67,20 @@
     }
 
     .user-email {
-        @apply text-sm text-secondary;
+        @apply text-sm;
+        @apply text-secondary;
     }
 
     @screen lg {
         .nav {
-            @apply w-56 h-screen;
+            @apply w-72;
+            @apply h-screen;
         }
 
         .nav-items-container {
-            @apply h-auto justify-center my-4;
+            @apply h-auto;
+            @apply justify-center;
+            @apply my-4;
         }
 
         .nav-items {
@@ -72,13 +88,11 @@
         }
 
         .profile-section {
-            @apply flex flex-col mt-8 mb-4 items-center;
-        }
-    }
-
-    @screen xl {
-        .nav {
-            @apply w-72;
+            @apply flex;
+            @apply flex-col;
+            @apply mt-8;
+            @apply mb-4;
+            @apply items-center;
         }
     }
 
