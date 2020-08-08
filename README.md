@@ -1,7 +1,7 @@
 # ADAB - Ayo Dengar Ayo Bicara (Let's Hear & Talk)
 [![Netlify Status][]][Netlify Repo]
 
-An open-source web and mobile application to help hearing-impaired students in the all-online world. We develop this app mainly to help our University's students at [Binus University](http://binus.ac.id/), but we hope to be also used outside. There's a [paper](https://www.online-journals.org/index.php/i-jet/article/view/12147) about this project if you like to learn more.
+An open-source web and mobile application to help hearing-impaired students in the all-online world. We develop this app mainly to help our friends at [Binus University](http://binus.ac.id/), but we hope to be also used outside. There's a [paper](https://www.online-journals.org/index.php/i-jet/article/view/12147) about this project if you like to learn more.
 
 ## Full documentation
 To check the full documentation visit [this site](https://bearcatsdev.github.io/docs/adab/guide/).
