@@ -1,3 +1,4 @@
 export default {
-  highContrast: false
+  highContrast: false,
+  fontOffset: 0
 }
