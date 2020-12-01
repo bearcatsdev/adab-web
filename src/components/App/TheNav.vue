@@ -2,8 +2,8 @@
     <div class="nav">
         <div class="profile-section">
             <img class="profile-picture" src="/api/v1/user/picture" alt="Profile picture">
-            <div class="user-name">{{ currentUser['user_name'] }}</div>
-            <div class="user-email">{{ currentUser['user_email'] }}</div>
+            <div :style="{ fontSize }" class="user-name">{{ currentUser['user_name'] }}</div>
+            <div :style="{ fontSize: fontSizeSm }" class="user-email">{{ currentUser['user_email'] }}</div>
         </div>
 
         <hr>
@@ -21,11 +21,22 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+    import fonts from '../../variables/fonts'
     import NavLink from "./NavLink";
     export default {
         name: "TheNav",
         components: { NavLink },
-        props: ['currentUser']
+        props: ['currentUser'],
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['base']
+            },
+            fontSizeSm() {
+                return fonts(this.fontOffset)['sm']
+            },
+        }
     }
 </script>
 
@@ -67,7 +78,6 @@
     }
 
     .user-email {
-        @apply text-sm;
         @apply text-secondary;
     }
 

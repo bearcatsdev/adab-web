@@ -1,12 +1,14 @@
 <template>
-    <router-link :to="to" class="router-link" active-class="active" >
+    <router-link :to="to" :style="{ fontSize }" class="router-link" active-class="active" >
         <i v-if="icon" class="router-icon" :data-feather="icon"/>
         <div class="router-text"><slot/></div>
     </router-link>
 </template>
 
 <script>
-    import feather from "feather-icons";
+    import { mapState } from 'vuex'
+    import feather from "feather-icons"
+    import fonts from '../../variables/fonts'
 
     export default {
         name: "NavLink",
@@ -14,6 +16,12 @@
         mounted() {
             feather.replace()
         },
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['base']
+            }
+        }
     }
 </script>
 

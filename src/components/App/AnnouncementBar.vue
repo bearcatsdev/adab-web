@@ -1,15 +1,17 @@
 <template>
     <div class="announcement-bar">
         <div class="content">
-            <div class="title">Announcement</div>
-            <div class="body">Pengumuman Auto Debet Biaya Kuliah Semester Genap 2018/2019</div>
+            <div class="title" :style="{ fontSize }">Announcement</div>
+            <div class="body" :style="{ fontSize }">Pengumuman Auto Debet Biaya Kuliah Semester Genap 2018/2019</div>
         </div>
         <div @click="closeAnnouncement"><i class="close-icon" data-feather="x"/></div>
     </div>
 </template>
 
 <script>
-    import feather from "feather-icons";
+    import { mapState } from 'vuex'
+    import feather from "feather-icons"
+    import fonts from '../../variables/fonts'
 
     export default {
         name: "AnnouncementBar",
@@ -21,6 +23,12 @@
         mounted() {
             feather.replace()
         },
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['base']
+            }
+        }
     }
 </script>
 

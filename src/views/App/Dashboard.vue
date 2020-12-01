@@ -7,8 +7,8 @@
                     <div class="info-section">
                         <img src="../../assets/images/pale-work-at-home.png"/>
                         <div class="pl-8 inline">
-                            <h3>Selamat Datang di ADAB!</h3>
-                            <p>Terima kasih telah membantu mencoba aplikasi ADAB - Ayo Dengar Ayo Bicara. Saran dan
+                            <h3 :style="{ fontSize }">Selamat Datang di ADAB!</h3>
+                            <p :style="{ fontSize: fontSizeSm }">Terima kasih telah membantu mencoba aplikasi ADAB - Ayo Dengar Ayo Bicara. Saran dan
                                 masukan Anda sangat dibutuhkan untuk mengembangi produk kami ini.</p>
                             <Button class="mt-4">Pelajari lebih lanjut</Button>
                         </div>
@@ -24,7 +24,7 @@
                     <div v-if="userSessions.length">
                         <router-link :to="`session/${session['session_id']}`" class="text-body"
                                      v-for="session in userSessions" :key="session['session_id']">
-                            <card class="section-card">
+                            <card :style="{ fontSize: fontSizeSm }" class="section-card">
                                 <div class="course-name">{{ session['course_id'] }} - {{ session['course_name'] }}</div>
                                 <div class="topic">{{ session['topic_title'] }}</div>
                                 <div class="topic-body">
@@ -49,7 +49,7 @@
                     <div v-if="userSessions.length">
                         <router-link :to="`session/${session['session_id']}`" class="text-body"
                                      v-for="session in userSessions" :key="session['session_id']">
-                            <card class="section-card">
+                            <card :style="{ fontSize: fontSizeSm }" class="section-card">
                                 <div class="course-name">{{ session['course_id'] }} - {{ session['course_name'] }}</div>
                                 <div class="topic">{{ session['topic_title'] }}</div>
                                 <div class="topic-body">
@@ -88,7 +88,8 @@
     import Section from "../../components/App/Section";
     import Card from "../../components/Card";
     import Button from "../../components/Button";
-    import {mapState} from "vuex";
+    import { mapState } from 'vuex'
+    import fonts from '../../variables/fonts'
     import moment from "moment";
 
     export default {
@@ -101,7 +102,14 @@
         },
         methods: {},
         computed: {
-            ...mapState('UserCredentials', ['currentUser', 'userSessions'])
+            ...mapState('UserCredentials', ['currentUser', 'userSessions']),
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['2xl']
+            },
+            fontSizeSm() {
+                return fonts(this.fontOffset)['sm']
+            }
         },
         filters: {
             moment: function (date) {

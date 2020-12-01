@@ -7,7 +7,7 @@
             <div v-if="currentUser['can_talk']">
                 <Button @click="toggleTalk">{{ talk ? 'Stop' : 'Start' }} talking</Button>
             </div>
-            <div>
+            <div :style="{ fontSize }">
                 {{ content }}
                 <span class="blinking-cursor" v-if="blinkingCursor">|</span>
             </div>
@@ -16,10 +16,11 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+    import fonts from '../../variables/fonts'
     import Section from "../../components/App/Section"
     import SessionApi from "../../services/api/Session"
     import io from "socket.io-client"
-    import {mapState} from "vuex";
     import Button from "../../components/Button";
 
     const socket = io.connect('https://adabapi.bearcats.dev')
@@ -38,7 +39,11 @@
             }
         },
         computed: {
-            ...mapState('UserCredentials', ['currentUser'])
+            ...mapState('UserCredentials', ['currentUser']),
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['base']
+            }
         },
         methods: {
             toggleTalk() {

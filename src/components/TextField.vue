@@ -7,6 +7,7 @@
                @blur="isActive = false"
                @input="$emit('input', $event.target.value)"
                class="text-box-input"
+               :style="{ fontSize }"
                :name="name"
                :placeholder="placeholder"
                :type="type"
@@ -20,19 +21,29 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     import feather from "feather-icons"
+    import fonts from '../variables/fonts'
+
     export default {
+        components: {},
         name: "TextField",
         props: ['type', 'name', 'icon', 'placeholder', 'value', 'required'],
         data() {
             return {
                 isActive: false,
-                isHover: false
+                isHover: false,
             }
         },
         mounted() {
             feather.replace()
         },
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['sm']
+            }
+        }
     }
 </script>
 
@@ -67,7 +78,6 @@
         padding-left: 45px;
         height: 44px;
         @apply bg-white;
-        @apply text-sm;
         @apply text-black;
         @apply absolute;
         @apply inline-block;

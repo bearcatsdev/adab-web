@@ -5,8 +5,8 @@
                 <i :data-feather="icon"/>
             </div>
             <div class="flex flex-col">
-                <div class="title">{{ title }}</div>
-                <div class="subtitle" v-if="subtitle">{{ subtitle }}</div>
+                <div class="title" :style="{ fontSize }">{{ title }}</div>
+                <div class="subtitle" :style="{ fontSize: fontSizeSm }" v-if="subtitle">{{ subtitle }}</div>
             </div>
         </div>
         <div class="divider" v-if="title"/>
@@ -17,13 +17,24 @@
 </template>
 
 <script>
-    import feather from "feather-icons";
+    import { mapState } from 'vuex'
+    import feather from "feather-icons"
+    import fonts from '../../variables/fonts'
 
     export default {
         name: "Section",
         props: ['title', 'subtitle', 'icon', 'color'],
         mounted() {
             feather.replace()
+        },
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['base']
+            },
+            fontSizeSm() {
+                return fonts(this.fontOffset)['sm']
+            },
         }
     }
 </script>
@@ -70,7 +81,6 @@
 
 
     .subtitle {
-        @apply text-sm;
         @apply text-secondary;
     }
 </style>
