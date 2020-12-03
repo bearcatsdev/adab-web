@@ -1,11 +1,20 @@
 <template>
-    <a :href="href" :target="target" class="button"><slot/></a>
+    <a :href="href" :target="target" :style="{ fontSize }" class="button"><slot/></a>
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+    import fonts from '../variables/fonts'
+
     export default {
         name: "LinkButton",
-        props: ['href', 'target']
+        props: ['href', 'target'],
+        computed: {
+            ...mapState(['fontOffset']),
+            fontSize() {
+                return fonts(this.fontOffset)['sm']
+            }
+        }
     }
 </script>
 
@@ -19,7 +28,6 @@
         @apply shadow-md;
         @apply uppercase;
         @apply font-medium;
-        @apply text-sm;
     }
     .button:hover {
         @apply bg-primaryDark;

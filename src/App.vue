@@ -4,13 +4,17 @@
       <router-view/>
       <div class="bg" />
     </div>
-    <button class="btn" @click="toggleContrast()">PENCET GANTI WARNA</button>
+    <div class="btn-container">
+      <button class="btn" @click="toggleContrast()">PENCET GANTI WARNA</button>
+      <button class="btn" @click="updateFontOffset(-2)">KURANG</button>
+      <button class="btn" @click="updateFontOffset(2)">TAMBO</button>
+    </div>
   </div>
 </template>
 
 <script>
   import { mapState, mapMutations } from 'vuex'
-  import { TOGGLE_CONSTRAST } from '@/store/global/mutations'
+  import { TOGGLE_CONSTRAST, UPDATE_FONT_OFFSET } from '@/store/global/mutations'
 
   export default {
     computed: {
@@ -18,7 +22,8 @@
     },
     methods: {
       ...mapMutations({
-        toggleContrast: TOGGLE_CONSTRAST
+        toggleContrast: TOGGLE_CONSTRAST,
+        updateFontOffset: UPDATE_FONT_OFFSET
       })
     }
   }
@@ -40,10 +45,13 @@
     z-index: -1;
   }
 
-  .btn {
-    position: fixed;
+  .btn-container {
+    @apply flex flex-row items-center fixed;
     bottom: 4rem;
     left: 4rem;
+  }
+
+  .btn {
     background-color: red;
     padding: 1rem;
   }

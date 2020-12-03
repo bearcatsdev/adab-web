@@ -6,7 +6,7 @@
                     <lottie :options="logo"/>
                 </div>
                 <div class="w-full">
-                    <div class="subtitle">Sign in</div>
+                    <text-view class="subtitle" size="sm">Sign in</text-view>
                     <text-field icon="user" name="email" placeholder="Email" type="email" v-model="form.username" required/>
                     <text-field icon="lock" name="password" placeholder="Password" type="password" v-model="form.password" required/>
                     <Button class="login-button" type="submit">Login</Button>
@@ -22,11 +22,12 @@
     import TextField from "../components/TextField"
     import Button from "../components/Button"
     import Lottie from 'vue-lottie'
+    import TextView from '../components/TextView'
     import logo from '../assets/lottie/logo.json'
 
     export default {
         name: "Login",
-        components: {Button, TextField, Card, Lottie},
+        components: {Button, TextField, Card, Lottie, TextView},
         data() {
             return {
                 form: {
@@ -79,7 +80,7 @@
     }
 
     .subtitle {
-        @apply uppercase font-bold text-sm mb-4 text-secondary;
+        @apply uppercase font-bold mb-4 text-secondary;
     }
 
     .error-message {
