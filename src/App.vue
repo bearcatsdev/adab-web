@@ -4,28 +4,19 @@
       <router-view/>
       <div class="bg" />
     </div>
-    <div class="btn-container">
-      <button class="btn" @click="toggleContrast()">PENCET GANTI WARNA</button>
-      <button class="btn" @click="updateFontOffset(-2)">KURANG</button>
-      <button class="btn" @click="updateFontOffset(2)">TAMBO</button>
-    </div>
+    <accessibility-control class="accessibility-control"/>
   </div>
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
-  import { TOGGLE_CONSTRAST, UPDATE_FONT_OFFSET } from '@/store/global/mutations'
+  import { mapState } from 'vuex'
+  import AccessibilityControl from "./components/App/AccessibilityControl";
 
   export default {
+    components: {AccessibilityControl},
     computed: {
       ...mapState(['highContrast'])
     },
-    methods: {
-      ...mapMutations({
-        toggleContrast: TOGGLE_CONSTRAST,
-        updateFontOffset: UPDATE_FONT_OFFSET
-      })
-    }
   }
 </script>
 
@@ -45,10 +36,8 @@
     z-index: -1;
   }
 
-  .btn-container {
-    @apply flex flex-row items-center fixed;
-    bottom: 4rem;
-    left: 4rem;
+  .accessibility-control {
+    @apply fixed left-0 bottom-0;
   }
 
   .btn {
