@@ -5,10 +5,12 @@
                  :title="`${sessionDetails['course_name']}: ${sessionDetails['topic_title']}`"
                  :subtitle="`${sessionDetails['course_id']} - ${sessionDetails['lecturer_name']} (${sessionDetails['course_lang']})`">
             <div v-if="currentUser['can_talk']">
-                <Button @click="toggleTalk">{{ talk ? 'Stop' : 'Start' }} talking</Button>
+                <Button @click="toggleTalk" :disabled="edit">{{ talk ? 'Stop' : 'Start' }} talking</Button>
+                <Button @click="toggleEdit" :disabled="talk">{{ edit ? 'Save' : 'Edit' }}</Button>
+                <Button @click="cancelEdit" v-if="edit">Cancel</Button>
             </div>
-            <div :style="{ fontSize }">
-                {{ content }}
+            <div :style="{ fontSize }" :contenteditable="edit" class="text-field" v-bind:class="{'editable': edit}">
+                <span id="content-view">{{ content }}</span>
                 <span class="blinking-cursor" v-if="blinkingCursor">|</span>
             </div>
         </Section>
@@ -35,6 +37,10 @@
                 sessionDetails: {},
                 content: '',
                 talk: false,
+                // added edit datas (start)
+                edit: false,
+                previousMessage: '',
+                // added edit datas (end)
                 blinkingCursor: false
             }
         },
@@ -94,8 +100,35 @@
                     this.blinkingCursor = false
                 });
 
+                // added edit sockets (start)
+                socket.on('edit', (message) => {
+                    this.content = message;
+                });
+                // added edit sockets (end)
+
                 socket.emit('join_room', this.sessionId);
+            },
+            // added edit methods (start)
+            toggleEdit() {
+                this.edit = !this.edit
+                this.edit ? this.startEdit() : this.stopEdit()
+            },
+            startEdit() {
+                this.edit = true
+                const messageBox = document.getElementById('content-view');
+                this.previousMessage = messageBox.innerHTML
+            },
+            stopEdit() {
+                this.edit = false
+                const messageBox = document.getElementById('content-view');
+                socket.emit('edit', messageBox.innerHTML)
+            },
+            cancelEdit() {
+                this.edit = false
+                const messageBox = document.getElementById('content-view');
+                messageBox.innerHTML = this.previousMessage
             }
+            // added edit methods (end)
         },
         mounted() {
             SessionApi.getSessionDetails(this.sessionId).then((response) => {
@@ -136,6 +169,27 @@
         -ms-user-select: none;
         user-select: none;
     }
+
+    /* added css (start) */
+    button {
+        margin-right: 0.5rem; 
+    }
+    button:disabled {
+        background-color: gray;
+    }
+
+    .text-field {
+        margin: 0.5rem 0;
+    }
+
+    .editable {
+        background-color: lightgray;
+        border: solid gray 1px;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+    }
+    /* added css (end) */
 
     @keyframes blink {
         from, to {
