@@ -14,7 +14,7 @@
     "core-js": "^3.6.5",
     "feather-icons": "^4.28.0",
     "lottie-vuejs": "^0.3.7",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "socket.io-client": "^2.3.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
